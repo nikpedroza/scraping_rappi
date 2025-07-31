@@ -66,10 +66,6 @@ def Login_y_extraccion_token():
     driver.refresh()    #reinicamos para cargar el json con los datos
     sleep(3)
 
-    #Una de las partes mas dificiles para mi... me fue muy dificil encontrar la manera de obtener todos los datos evitandoIterar todas las Marcas/Sucursales
-    #Tuve un poco de ayuda de IA para encontrar la manera de obtener el token y el json de la pagina para obtener los datos
-    #Fuera de esa pequeña ayuda pude encontrar la manera de implementarlo en el codigo
-
     '''OBTENCION DE TOKEN'''
     try:
         token=driver.execute_script("return window.localStorage.getItem('access_token');")  #Guardamos el token UNICO que da la pagina
@@ -113,7 +109,6 @@ def obtener_json(token,fecha,id_sucursal):
         'Origin': 'https://partners.rappi.com',
         'Referer': 'https://partners.rappi.com/',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-        # Add any other relevant headers from the original request if necessary
     }
     # Creamos una lista para almacenar los paises de las sucursales
     country=[]
@@ -164,8 +159,9 @@ def obtener_json(token,fecha,id_sucursal):
         except json.JSONDecodeError: 
             print("-----------------\nNo se pudo decodificar el json,Continuamos con el siguiente dato.\n-----------------")
 
-    archivo_existe=os.path.isfile("datos.csv")
     #Escritura del csv
+    archivo_existe=os.path.isfile("datos.csv")
+    
     with open("datos.csv","a",encoding="UTF-8",newline="") as datos_csv:
         #Definimos los encabezados
         nom_columna=["Fecha","ID","Ordenes","Ganancia"]
