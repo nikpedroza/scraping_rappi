@@ -7,13 +7,15 @@ from selenium.webdriver.common.keys import Keys #Movimientos de teclado
 from selenium.common.exceptions import NoSuchElementException,TimeoutException #Se usa en try-except para identificar errores de selenium
 import gspread  #Libreria para Google Sheets
 from google.oauth2.service_account import Credentials #Libreria para Google Sheets
-import requests #Enviar y recibir peticiones
+#import requests #Comentado para pruebas
 import json #Para almacenar y administrar los JSON
 from time import sleep  #Temporizador
 from datetime import datetime,timedelta #Necesario para conseguir iterar fechas
 import csv  #Guardamos los datos
 import os #Lo utilizamos unicamente para no sobreescribir el csv
 from dotenv import load_dotenv #Esto es para importar datos privados guardados en un .env
+import asyncio  #Asincronia
+import aiohttp  #Asincronia
 
 load_dotenv()
 
